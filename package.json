@@ -2,7 +2,7 @@
   "name": "spa-mascotas",
   "version": "1.0.0",
   "private": true,
-  "homepage": "https://jeffersonlipsky.github.io/spa-mascotas",
+  "homepage": "https://jlipsky14167.github.io/spa-mascotas",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

@@ -20,14 +20,6 @@ npm run build
 
 ## Despliegue a GitHub Pages
 
-En `package.json`, actualiza `"homepage"` con tu usuario:
-
-```json
-"homepage": "https://<tu-usuario>.github.io/spa-mascotas"
-```
-
-Luego:
-
 ```bash
 npm run deploy
 ```
