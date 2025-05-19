@@ -1,6 +1,6 @@
 
 const CompraConcentrados = () => (
-  <section id="compras" className="bg-light p-4 rounded shadow mb-4">
+  <section id="compras" className="p-4 rounded shadow mb-4">
     <h2>Compra Concentrados</h2>
     <form>
       <div className="mb-3"><label className="form-label">Marca</label><input className="form-control" required /></div>

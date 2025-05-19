@@ -1,6 +1,6 @@
 
 const RegistrarEvento = () => (
-  <section id="eventos" className="bg-white p-4 rounded shadow mb-4">
+  <section id="eventos" className="p-4 rounded shadow mb-4">
     <h2>Registrar Evento</h2>
     <form>
       <div className="mb-3"><label className="form-label">Tipo Evento</label><input className="form-control" required /></div>

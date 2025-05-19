@@ -1,6 +1,6 @@
 
 const AgregarMascota = () => (
-  <section id="agregar" className="bg-white p-4 rounded shadow mb-4">
+  <section id="agregar" className="p-4 rounded shadow mb-4">
     <h2>Agregar Mascota</h2>
     <form>
       <div className="mb-3"><label className="form-label">Nombre</label><input type="text" className="form-control" required autoFocus autoComplete="name" /></div>
