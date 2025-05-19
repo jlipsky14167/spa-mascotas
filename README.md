@@ -11,6 +11,7 @@ npm install
 ```bash
 npm run dev
 ```
+La aplicación estara en `http://localhost:5173`.
 
 ## Construir
 
