@@ -19,4 +19,7 @@ export const router = createBrowserRouter([
       { path: "*", Component: () => <h2>404 – Página no encontrada</h2> },
     ],
   },
-]);
+], {
+  basename: "/spa-mascotas", // <-- aquí defines el base path
+}
+);
