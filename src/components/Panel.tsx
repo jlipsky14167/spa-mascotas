@@ -12,6 +12,8 @@ interface Evento {
   status: string;
 }
 
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
 const Panel = () => {
   const [eventos, setEventos] = useState<Evento[]>([]);
   const [loading, setLoading] = useState(true);
@@ -29,7 +31,7 @@ const Panel = () => {
 
 
   useEffect(() => {
-    fetch("http://localhost:3000/upcoming-events")
+    fetch(`${API_URL}/upcoming-events`)
       .then(res => res.json())
       .then(data => {
         setEventos(Array.isArray(data) ? data : []);
@@ -39,7 +41,7 @@ const Panel = () => {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:3000/pets/summary")
+    fetch(`${API_URL}/pets/summary`)
       .then(res => res.json())
       .then(data => setResumen(data))
       .catch(() => setResumen(null));
