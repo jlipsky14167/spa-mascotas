@@ -2,11 +2,10 @@ import { createBrowserRouter } from "react-router";
 
 import App from "./App";
 import Panel from "./components/Panel";
-import AgregarMascota from "./components/AgregarMascota";
+import MascotaListado from "./components/MascotaListado";
+import MascotaDetalle from "./components/MascotaDetalle";
 import RegistrarEvento from "./components/RegistrarEvento";
 import CompraConcentrados from "./components/CompraConcentrados";
-import test from "./components/test";
-
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -14,10 +13,11 @@ export const router = createBrowserRouter([
     children: [
       { index: true, Component: Panel }, // ruta “/”
       { path: "panel", Component: Panel },
-      { path: "agregar", Component: AgregarMascota },
+      { path: "mascotas", Component: MascotaListado },
+      { path: "agregar", Component: MascotaDetalle },
+      { path: "mascotas/:pet_id", Component: MascotaDetalle },
       { path: "eventos", Component: RegistrarEvento },
       { path: "compras", Component: CompraConcentrados },
-      { path: "test", Component: test },
       { path: "*", Component: () => <h2>404 – Página no encontrada</h2> },
     ],
   },

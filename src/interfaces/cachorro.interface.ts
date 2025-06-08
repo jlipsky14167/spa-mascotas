@@ -1,6 +1,4 @@
-export interface Cachorro {
-    pet_id: number | string;
-    name: string;
-    birthdate: string;
-    // agrega aquí otros campos si es necesario
-  }
+import type { Mascota } from "./mascota.interface";
+
+export type Cachorro = Pick<Mascota, 'pet_id' | 'name' | 'birthdate'>
+  
