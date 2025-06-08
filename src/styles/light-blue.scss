@@ -1,0 +1,55 @@
+$primary-bg: #232a4d;
+$sidebar-bg: #20254a;
+$card-bg: #232a4d;
+$text-color: #e0e6f6;
+$accent: #3b7ddd;
+
+body {
+  background: $primary-bg;
+  color: $text-color;
+  font-family: 'Inter', 'Roboto', Arial, sans-serif;
+}
+
+.sidebar {
+  background: $sidebar-bg;
+  color: $text-color;
+  min-height: 100vh;
+  padding: 2rem 1rem;
+}
+
+.sidebar .nav-link {
+  color: $text-color;
+  margin-bottom: 1rem;
+  display: block;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 500;
+  &:hover, &.active {
+    background: $accent;
+    color: #fff;
+  }
+}
+
+.main-content {
+  padding: 0 2rem;
+  background: $primary-bg;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.card {
+  background: $card-bg;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.15);
+  color: $text-color;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}

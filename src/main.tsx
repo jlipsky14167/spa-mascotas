@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom/client";
 import { RouterProvider } from "react-router";
 import "./styles/App.scss";
+import './styles/light-blue.scss';
 
 import { router } from "./routes";
 import ErrorBoundary from './components/ErrorBoundary';
