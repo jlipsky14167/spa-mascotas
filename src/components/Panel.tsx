@@ -14,6 +14,8 @@ interface Evento {
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
+console.log("API_URL", API_URL);
+
 const Panel = () => {
   const [eventos, setEventos] = useState<Evento[]>([]);
   const [loading, setLoading] = useState(true);
