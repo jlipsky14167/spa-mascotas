@@ -5,6 +5,7 @@ import Panel from "./components/Panel";
 import AgregarMascota from "./components/AgregarMascota";
 import RegistrarEvento from "./components/RegistrarEvento";
 import CompraConcentrados from "./components/CompraConcentrados";
+import test from "./components/test";
 
 export const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ export const router = createBrowserRouter([
       { path: "agregar", Component: AgregarMascota },
       { path: "eventos", Component: RegistrarEvento },
       { path: "compras", Component: CompraConcentrados },
+      { path: "test", Component: test },
       { path: "*", Component: () => <h2>404 – Página no encontrada</h2> },
     ],
   },

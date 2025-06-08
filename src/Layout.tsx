@@ -2,10 +2,10 @@ import type { ReactNode } from 'react';
 import { NavLink } from 'react-router';
 
 const menuItems = [
-    { path: '/panel', label: 'Panel' },
     { path: '/agregar', label: 'Agregar Mascota' },
     { path: '/eventos', label: 'Registrar Evento' },
     { path: '/compras', label: 'Compra de Concentrados' },
+    { path: '/test', label: 'test' },
 ];
 
 export default function Layout({ children }: { children: ReactNode }) {
