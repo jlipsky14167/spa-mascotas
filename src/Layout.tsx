@@ -4,9 +4,11 @@ import { NavLink } from 'react-router';
 const menuItems = [
 
     { path: '/mascotas', label: 'Mascotas' },
-    { path: '/agregar', label: 'Agregar Mascota' },
-    { path: '/eventos', label: 'Registrar Evento' },
+    { path: 'agregar_mascota', label: 'Agregar Mascota' },
+    { path: '/eventos', label: 'Eventos' },
+    { path: 'registrar_evento', label: 'Registrar Evento' },
     { path: '/compras', label: 'Compra de Concentrados' },
+    { path: '/pronosticoDelClima', label: 'Pronostico' },
 ];
 
 export default function Layout({ children }: { children: ReactNode }) {

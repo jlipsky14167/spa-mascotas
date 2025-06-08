@@ -1,5 +1,5 @@
 
-const RegistrarEvento = () => (
+const EventoRegistrar = () => (
   <section id="eventos" className="p-4 rounded shadow mb-4">
     <h2>Registrar Evento</h2>
     <form>
@@ -11,4 +11,4 @@ const RegistrarEvento = () => (
   </section>
 )
 
-export default RegistrarEvento
+export default EventoRegistrar
