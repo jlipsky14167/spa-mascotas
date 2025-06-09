@@ -49,8 +49,8 @@ export default function EventoListado() {
                             {eventos.map(ev => (
                                 <tr key={ev.event_id}>
                                     <td>{ev.event_id}</td>
-                                    <td>{ev.pet_id}</td>
-                                    <td>{ev.event_type_id}</td>
+                                    <td>{ev.pet_id}) {ev.pet_name}</td>
+                                    <td>{ev.event_type_id}) {ev.event_type_name}</td>
                                     <td>{ev.body}</td>
                                     <td>{ev.status}</td>
                                     <td>{ev.created_at ? new Date(ev.created_at).toLocaleString() : ""}</td>

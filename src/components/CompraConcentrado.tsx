@@ -21,7 +21,12 @@ const CompraConcentrado = () => {
   const [error, setError] = useState<string | null>(null);
   const [convAmount, setConvAmount] = useState("");
   const [convUnit, setConvUnit] = useState("pound");
-  const [convResult, setConvResult] = useState<any>(null);
+  interface ConvResult {
+    amount: number;
+    unit: string;
+    conversions: Record<string, number>;
+  }
+  const [convResult, setConvResult] = useState<ConvResult | null>(null);
   const [convLoading, setConvLoading] = useState(false);
   const [convError, setConvError] = useState<string | null>(null);
 
@@ -109,8 +114,12 @@ const CompraConcentrado = () => {
       }
       const data = await res.json();
       setConvResult(data);
-    } catch (err: any) {
-      setConvError(err.message || "Error en la conversión");
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setConvError(err.message || "Error en la conversión");
+      } else {
+        setConvError("Error en la conversión");
+      }
     }
     setConvLoading(false);
   };
@@ -230,7 +239,7 @@ const CompraConcentrado = () => {
             <ul className="mb-0">
               {Object.entries(convResult.conversions || {}).map(([unit, value]) => (
                 <li key={unit}>
-                  {value} {unit}
+                  {String(value)} {unit}
                 </li>
               ))}
             </ul>

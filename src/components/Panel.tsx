@@ -5,6 +5,8 @@ import { Clima } from "./Clima";
 import type { Cachorro } from "../interfaces/cachorro.interface";
 
 interface Evento {
+  event_type_name: string;
+  pet_name: string;
   pet_id: number | string;
   event_type_id: number | string;
   body: string;
@@ -96,8 +98,8 @@ const Panel = () => {
           ) : (
             eventos.map((evento, idx) => (
               <tr key={idx}>
-                <td>{evento.pet_id}</td>
-                <td>{evento.event_type_id}</td>
+                <td>{evento.pet_id}) {evento.pet_name}</td>
+                <td>{evento.event_type_id}) {evento.event_type_name}</td>
                 <td>{evento.body}</td>
                 <td>{evento.alarm_at ? new Date(evento.alarm_at).toLocaleString() : ""}</td>
                 <td>{evento.status}</td>
