@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import type { Evento } from "../interfaces/evento.interface";
+import { Typeahead } from "react-bootstrap-typeahead";
+import "react-bootstrap-typeahead/css/Typeahead.css";
+import type { Option } from "react-bootstrap-typeahead/types/types";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
@@ -24,9 +27,9 @@ export default function EventoRegistrar() {
 
   // Tipos de evento
   const [eventTypes, setEventTypes] = useState<EventType[]>([]);
-  // Mascotas para el select
+  // Mascotas para el typeahead
   const [mascotas, setMascotas] = useState<MascotaOption[]>([]);
-  const [mascotaSearch, setMascotaSearch] = useState("");
+  const [mascotaSelected, setMascotaSelected] = useState<MascotaOption[]>([]);
   const [mascotasLoading, setMascotasLoading] = useState(false);
 
   // Cargar tipos de evento al montar
@@ -62,6 +65,19 @@ export default function EventoRegistrar() {
               status: data.status || "",
               alarm_at: data.alarm_at ? data.alarm_at.slice(0, 16) : "",
             });
+            // Prellenar mascota seleccionada
+            if (data.pet_id && data.name) {
+              setMascotaSelected([{ pet_id: data.pet_id, name: data.name }]);
+            } else if (data.pet_id) {
+              // Si no viene el nombre, buscarlo
+              fetch(`${API_URL}/pets/${data.pet_id}`)
+                .then(res => res.json())
+                .then(mascota => {
+                  if (mascota && mascota.pet_id && mascota.name) {
+                    setMascotaSelected([{ pet_id: mascota.pet_id, name: mascota.name }]);
+                  }
+                });
+            }
           } else {
             setError("Evento no encontrado");
           }
@@ -82,6 +98,7 @@ export default function EventoRegistrar() {
         status: "",
         alarm_at: "",
       });
+      setMascotaSelected([]);
       setEditable(true);
       setSuccessMsg(null);
       setError(null);
@@ -89,13 +106,13 @@ export default function EventoRegistrar() {
   }, [event_id]);
 
   // Buscar mascotas por nombre (asincrónico)
-  useEffect(() => {
-    if (mascotaSearch.length === 0) {
+  const handleMascotaSearch = (query: string) => {
+    if (!query) {
       setMascotas([]);
       return;
     }
     setMascotasLoading(true);
-    fetch(`${API_URL}/pets/searchByName?search=${encodeURIComponent(mascotaSearch)}`)
+    fetch(`${API_URL}/pets/searchByName?search=${encodeURIComponent(query)}`)
       .then(res => {
         if (!res.ok) throw new Error("Error al buscar mascotas");
         return res.json();
@@ -108,20 +125,23 @@ export default function EventoRegistrar() {
         setMascotasLoading(false);
         setError("Error al buscar mascotas: " + (err?.message || ""));
       });
-  }, [mascotaSearch]);
+  };
+
+  const handleMascotaSelect = (selected: Option[]) => {
+    // Only keep MascotaOption objects, ignore string options
+    const selectedMascotas = selected.filter(
+      (item): item is MascotaOption =>
+        typeof item === "object" &&
+        item !== null &&
+        "pet_id" in item &&
+        "name" in item
+    );
+    setMascotaSelected(selectedMascotas);
+    setForm({ ...form, pet_id: selectedMascotas[0]?.pet_id?.toString() || "" });
+  };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  // Para el select de mascotas, manejar búsqueda
-  const handleMascotaInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setMascotaSearch(e.target.value);
-    setForm({ ...form, pet_id: "" });
-  };
-
-  const handleMascotaSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setForm({ ...form, pet_id: e.target.value });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -200,30 +220,24 @@ export default function EventoRegistrar() {
         />
       </div>
       <div className="mb-2">
-        <label>ID Mascota</label>
-        <input
-          className="form-control mb-1"
-          placeholder="Buscar por nombre..."
-          value={mascotaSearch}
-          onChange={handleMascotaInput}
-          disabled={!editable}
-        />
-        <select
-          className="form-control"
-          name="pet_id"
-          value={form.pet_id}
+        <label>Mascota</label>
+        <Typeahead
+          id="typeahead-mascota"
+          labelKey={option => typeof option === "string" ? option : `${option.pet_id}-${option.name}`}
+          onInputChange={handleMascotaSearch}
           onChange={handleMascotaSelect}
-          required
-          disabled={!editable || mascotasLoading}
-        >
-          <option value="">Seleccione mascota...</option>
-          {mascotas.map((m) => (
-            <option key={m.pet_id} value={m.pet_id}>
-              {m.pet_id}-{m.name}
-            </option>
-          ))}
-        </select>
-        {mascotasLoading && <div>Cargando mascotas...</div>}
+          options={mascotas}
+          selected={mascotaSelected}
+          isLoading={mascotasLoading}
+          placeholder="Buscar mascota por nombre..."
+          disabled={!editable}
+          minLength={1}
+          renderMenuItemChildren={(option) => (
+            <span>
+              {(option as MascotaOption).pet_id}-{(option as MascotaOption).name}
+            </span>
+          )}
+        />
       </div>
       <div className="mb-2">
         <label>Estado</label>
