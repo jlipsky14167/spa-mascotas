@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import type { Evento } from "../interfaces/evento.interface";
+import { NavLink } from "react-router";
 
 const API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
 const PAGE_SIZE = 10;
@@ -41,6 +42,7 @@ export default function EventoListado() {
                                 <th>Estado</th>
                                 <th>Fecha</th>
                                 <th>Alarma</th>
+                                <th>Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -53,6 +55,14 @@ export default function EventoListado() {
                                     <td>{ev.status}</td>
                                     <td>{ev.created_at ? new Date(ev.created_at).toLocaleString() : ""}</td>
                                     <td>{ev.alarm_at ? new Date(ev.alarm_at).toLocaleString() : ""}</td>
+                                    <td>
+                                        <NavLink
+                                            to={`/eventos/${ev.event_id}`}
+                                            className="btn btn-primary btn-sm"
+                                        >
+                                            Editar
+                                        </NavLink>
+                                    </td>
                                 </tr>
                             ))}
                         </tbody>

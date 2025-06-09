@@ -49,7 +49,7 @@ export default function ListarMascotas() {
                                 <td>{m.birthdate}</td>
                                 <td>
                                     {m.pet_id && (
-                                        <NavLink to={`/mascotas/${m.pet_id}`} className="nav-link">Editar</NavLink>
+                                        <NavLink to={`/mascotas/${m.pet_id}`} className="btn btn-primary btn-sm">Editar</NavLink>
                                     )}
                                 </td>
                             </tr>
