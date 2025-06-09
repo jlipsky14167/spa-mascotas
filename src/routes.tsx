@@ -5,7 +5,7 @@ import Panel from "./components/Panel";
 import MascotaListado from "./components/MascotaListado";
 import MascotaDetalle from "./components/MascotaDetalle";
 import EventoDetalle from "./components/EventoDetalle";
-import CompraConcentrados from "./components/CompraConcentrados";
+import CompraConcentrado from "./components/CompraConcentrado";
 import EventoListado from "./components/EventoListado";
 import { ClimaPronostico } from "./components/ClimaPronostico";
 export const router = createBrowserRouter([
@@ -21,7 +21,7 @@ export const router = createBrowserRouter([
       { path: "eventos", Component: EventoListado },
       { path: "eventos/:event_id", Component: EventoDetalle },
       { path: "registrar_evento", Component: EventoDetalle },
-      { path: "compras", Component: CompraConcentrados },
+      { path: "compras", Component: CompraConcentrado },
       { path: "pronosticoDelClima", Component: ClimaPronostico },
       { path: "*", Component: () => <h2>404 – Página no encontrada</h2> },
     ],
