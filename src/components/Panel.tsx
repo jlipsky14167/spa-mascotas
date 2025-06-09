@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Col, Container, Row, Table } from "react-bootstrap";
 import PanelSummary from "./PanelSummary";
 import { Clima } from "./Clima";
+import PanelDogImage from "./PanelDogImage";
 import type { Cachorro } from "../interfaces/cachorro.interface";
 
 interface Evento {
@@ -20,8 +21,6 @@ const Panel = () => {
   const [eventos, setEventos] = useState<Evento[]>([]);
   const [loading, setLoading] = useState(true);
 
-
-
   // Mascotas resumen
   const [resumen, setResumen] = useState<{
     total: number;
@@ -29,8 +28,6 @@ const Panel = () => {
     porcentajeCachorros: number;
     listaCachorros: Cachorro[];
   } | null>(null);
-
-
 
   useEffect(() => {
     fetch(`${API_URL}/upcoming-events`)
@@ -49,10 +46,7 @@ const Panel = () => {
       .catch(() => setResumen(null));
   }, []);
 
-
   return (
-
-
     <section id="panel" className="p-4 rounded shadow mb-4">
       <Container fluid>
         <Row>
@@ -69,9 +63,8 @@ const Panel = () => {
               />
             </Col>
           )}
-
-          {/* Panel del clima */}
           <Col md={3}><Clima /></Col>
+          <Col md={3}><PanelDogImage /></Col>
         </Row>
       </Container>
 
