@@ -1,4 +1,7 @@
 export interface Mascota {
+    breed_name: string;
+    vet_name: string;
+    main_owner_name: string;
     pet_id: number | string;
     name: string;
     main_owner_id: number | string;

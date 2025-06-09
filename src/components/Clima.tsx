@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import PanelSummary from "./PanelSummary";
 
-const API_NINJAS_KEY = "6SNOzoX4oDPMpGPnaO0gRg==STEVN57wTCpHm2VE"; // Reemplaza con tu API Key real
+const API_NINJAS_KEY = import.meta.env.VITE_API_NINJAS_KEY;
 
 interface WeatherData {
     temp?: number;

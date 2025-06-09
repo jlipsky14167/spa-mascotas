@@ -43,9 +43,9 @@ export default function ListarMascotas() {
                             <tr key={m.pet_id}>
                                 <td>{m.pet_id}</td>
                                 <td>{m.name}</td>
-                                <td>{m.main_owner_id}</td>
-                                <td>{m.vet_id}</td>
-                                <td>{m.breed_id}</td>
+                                <td>{m.main_owner_id}) {m.main_owner_name}</td>
+                                <td>{m.vet_id}) {m.vet_name}</td>
+                                <td>{m.breed_id}) {m.breed_name} </td>
                                 <td>{m.birthdate}</td>
                                 <td>
                                     {m.pet_id && (

@@ -36,7 +36,6 @@ const CompraConcentrado = () => {
   };
 
   const handleMascotaSelect = (selected: Option[]) => {
-    console.log("Mascota seleccionada:", selected);
     // Filter out string options, only keep MascotaOption
     const selectedMascota = selected.filter(
       (item): item is MascotaOption => typeof item === "object" && item !== null && "pet_id" in item && "name" in item

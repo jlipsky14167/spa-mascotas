@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const API_NINJAS_KEY = "6SNOzoX4oDPMpGPnaO0gRg==STEVN57wTCpHm2VE"; // Reemplaza con tu API Key real
+const API_NINJAS_KEY = import.meta.env.VITE_API_NINJAS_KEY;
 const DEFAULT_LAT = 4.6;
 const DEFAULT_LON = -74;
 
@@ -32,7 +32,6 @@ export function ClimaPronostico() {
                     return res.json();
                 })
                 .then((data) => {
-                    console.log("Pronóstico del clima:", data);
                     setForecast(data || []);
                     setLoading(false);
                 })
